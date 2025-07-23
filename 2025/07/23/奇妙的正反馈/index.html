@@ -19,25 +19,28 @@
   <meta name="author" content="浮云战争">
   <meta name="keywords" content="">
   
-    <meta name="description" content="最近上班摸鱼在写一个拼图软件:JKWTCN&#x2F;ImageSplicing,暂定名字叫拼好图; 今天晚上发现了一个bug,修复前代码如下: 1234567891011121314151617if (rightSplicingLine &amp;&amp; leftSplicingLine) &#123;&#125; else if (!rightSplicingLine &amp;&amp;">
+    <meta name="description" content="今天晚上继续开发拼好图的时候,遇到了一个不难解决的bug,但是带来了一些哲学思考.就是当你移动中间图片的时候,先上移会把下面的图片整体移动,然后缓慢下移下面的图片也会一起整体下移,当你快速下移的时候,会把最下面的图片给甩出去: 至于原因嘛,是因为在Qt的Graphics View框架中，当调用 QGraphicsItem::setPos() 时，如果该item设置了 ItemSendsGeomet">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记录一次有趣的debug">
-<meta property="og:url" content="http://example.com/2025/07/22/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E5%A5%87%E6%80%AA%E7%9A%84debug/index.html">
+<meta property="og:title" content="奇妙的正反馈">
+<meta property="og:url" content="http://example.com/2025/07/23/%E5%A5%87%E5%A6%99%E7%9A%84%E6%AD%A3%E5%8F%8D%E9%A6%88/index.html">
 <meta property="og:site_name" content="浮云战争的博客">
-<meta property="og:description" content="最近上班摸鱼在写一个拼图软件:JKWTCN&#x2F;ImageSplicing,暂定名字叫拼好图; 今天晚上发现了一个bug,修复前代码如下: 1234567891011121314151617if (rightSplicingLine &amp;&amp; leftSplicingLine) &#123;&#125; else if (!rightSplicingLine &amp;&amp;">
+<meta property="og:description" content="今天晚上继续开发拼好图的时候,遇到了一个不难解决的bug,但是带来了一些哲学思考.就是当你移动中间图片的时候,先上移会把下面的图片整体移动,然后缓慢下移下面的图片也会一起整体下移,当你快速下移的时候,会把最下面的图片给甩出去: 至于原因嘛,是因为在Qt的Graphics View框架中，当调用 QGraphicsItem::setPos() 时，如果该item设置了 ItemSendsGeomet">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/image/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E5%A5%87%E6%80%AA%E7%9A%84debug/1753193101455.gif">
-<meta property="og:image" content="http://example.com/image/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E5%A5%87%E6%80%AA%E7%9A%84debug/1753193414462.gif">
-<meta property="article:published_time" content="2025-07-22T13:51:23.000Z">
-<meta property="article:modified_time" content="2025-07-22T14:19:30.759Z">
+<meta property="og:image" content="http://example.com/image/%E5%A5%87%E5%A6%99%E7%9A%84%E6%AD%A3%E5%8F%8D%E9%A6%88/1753285276743.png">
+<meta property="og:image" content="http://example.com/image/%E5%A5%87%E5%A6%99%E7%9A%84%E6%AD%A3%E5%8F%8D%E9%A6%88/1753285301368.png">
+<meta property="og:image" content="http://example.com/image/%E5%A5%87%E5%A6%99%E7%9A%84%E6%AD%A3%E5%8F%8D%E9%A6%88/1753285330239.png">
+<meta property="og:image" content="http://example.com/image/%E5%A5%87%E5%A6%99%E7%9A%84%E6%AD%A3%E5%8F%8D%E9%A6%88/1753286100387.png">
+<meta property="article:published_time" content="2025-07-23T15:37:35.000Z">
+<meta property="article:modified_time" content="2025-07-23T15:57:33.411Z">
 <meta property="article:author" content="浮云战争">
 <meta property="article:tag" content="拼好图">
+<meta property="article:tag" content="杂谈">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/image/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E5%A5%87%E6%80%AA%E7%9A%84debug/1753193101455.gif">
+<meta name="twitter:image" content="http://example.com/image/%E5%A5%87%E5%A6%99%E7%9A%84%E6%AD%A3%E5%8F%8D%E9%A6%88/1753285276743.png">
   
   
   
-  <title>记录一次有趣的debug - 浮云战争的博客</title>
+  <title>奇妙的正反馈 - 浮云战争的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +206,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="记录一次有趣的debug"></span>
+            <span id="subtitle" data-typed-text="奇妙的正反馈"></span>
           
         </div>
 
@@ -214,8 +217,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-07-22 21:51" pubdate>
-          2025年7月22日 晚上
+        <time datetime="2025-07-23 23:37" pubdate>
+          2025年7月23日 晚上
         </time>
       </span>
     
@@ -226,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          411 字
+          613 字
         
       </span>
     
@@ -237,7 +240,7 @@
         
         
         
-          4 分钟
+          6 分钟
         
       </span>
     
@@ -274,23 +277,17 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">记录一次有趣的debug</h1>
+            <h1 id="seo-header">奇妙的正反馈</h1>
             
             
               <div class="markdown-body">
                 
-                <p>最近上班摸鱼在写一个拼图软件:<a target="_blank" rel="noopener" href="https://github.com/JKWTCN/ImageSplicing">JKWTCN&#x2F;ImageSplicing</a>,暂定名字叫拼好图;</p>
-<p>今天晚上发现了一个bug,修复前代码如下:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">if</span> (rightSplicingLine &amp;&amp; leftSplicingLine) &#123;<br><br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!rightSplicingLine &amp;&amp; leftSplicingLine) &#123;<br>    qreal lineLX = leftSplicingLine -&gt; <span class="hljs-built_in">line</span>().<span class="hljs-built_in">x1</span>();<br>    <span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">&quot;最右边图片右移&quot;</span> &lt;&lt; rightX &lt;&lt; <span class="hljs-string">&quot;  &quot;</span> &lt;&lt; lineLX &lt;&lt; endl;<br>    <span class="hljs-keyword">if</span> (!(leftX &lt;= lineLX)) &#123;<br>        newPos.<span class="hljs-built_in">setX</span>(oldPos.<span class="hljs-built_in">x</span>());<br>        <span class="hljs-keyword">return</span> newPos;<br>    &#125;<br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (rightSplicingLine &amp;&amp; !leftSplicingLine) &#123;<br>    qreal lineRX = rightSplicingLine -&gt; <span class="hljs-built_in">line</span>().<span class="hljs-built_in">x1</span>();<br>    <span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">&quot;最左边图片右移&quot;</span> &lt;&lt; rightX &lt;&lt; <span class="hljs-string">&quot;  &quot;</span> &lt;&lt; lineRX &lt;&lt; endl;<br>    <span class="hljs-keyword">if</span> (!(rightX &gt;= lineRX)) &#123;<br>        newPos.<span class="hljs-built_in">setX</span>(oldPos.<span class="hljs-built_in">x</span>());<br>        <span class="hljs-keyword">return</span> newPos;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+                <p>今天晚上继续开发拼好图的时候,遇到了一个不难解决的bug,但是带来了一些哲学思考.就是当你移动中间图片的时候,先上移会把下面的图片整体移动,然后缓慢下移下面的图片也会一起整体下移,当你快速下移的时候,会把最下面的图片给甩出去:</p>
+<p><img src="/image/%E5%A5%87%E5%A6%99%E7%9A%84%E6%AD%A3%E5%8F%8D%E9%A6%88/1753285276743.png" srcset="/img/loading.gif" lazyload alt="中间图片上移是正常的"><img src="/image/%E5%A5%87%E5%A6%99%E7%9A%84%E6%AD%A3%E5%8F%8D%E9%A6%88/1753285301368.png" srcset="/img/loading.gif" lazyload alt="中间图片上移再缓慢的下移也是正常的"><img src="/image/%E5%A5%87%E5%A6%99%E7%9A%84%E6%AD%A3%E5%8F%8D%E9%A6%88/1753285330239.png" srcset="/img/loading.gif" lazyload alt="中间图片上移再快速的下移,就会把最下面的一张图片给甩出去">至于原因嘛,是因为在Qt的Graphics View框架中，当调用 QGraphicsItem::setPos() 时，如果该item设置了 ItemSendsGeometryChanges 标志，Qt会自动调用 itemChange() 函数。所以当你移动速度非常快的时候,采样更多,每次调用 QGraphicsItem::setPos()触发的itemChange()更多,就会偏离更多.这是一个正反馈,反馈信息影响系统再输出的结果，更加增大了受控量的实际值和期望值的偏差，从而使系统趋向于更加不稳定状态。解决方法就是在QGraphicsItem::setPos()前临时禁用一下子ItemSendsGeometryChanges 标志,在调用完后再打开,这样子就可以打破它的正反馈,代码如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 整体移动currentBottomY以下的</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">MovablePixmapItem::moveElementsBelow</span><span class="hljs-params">(qreal currentBottomY, qreal deltaY)</span> </span>&#123;<br><br>    <span class="hljs-comment">// 遍历场景中的所有项目，找到位于当前元素下方的元素</span><br>    QList &lt; QGraphicsItem * &gt; allItems = <span class="hljs-keyword">this</span> -&gt; <span class="hljs-built_in">scene</span>() -&gt; <span class="hljs-built_in">items</span>();<br><br>    <span class="hljs-keyword">for</span> (QGraphicsItem * item: allItems) &#123;<br>        <span class="hljs-comment">// 处理SplicingLine类型的项目</span><br>        SplicingLine * splicingLine = <span class="hljs-keyword">dynamic_cast</span> &lt; SplicingLine * &gt; (item);<br>        <span class="hljs-keyword">if</span> (splicingLine) &#123;<br>            <span class="hljs-comment">// 检查拼接线是否位于当前元素的下方</span><br>            qreal lineY = splicingLine -&gt; <span class="hljs-built_in">line</span>().<span class="hljs-built_in">y1</span>();<br>            <span class="hljs-keyword">if</span> (lineY &gt; currentBottomY) &#123;<br>                <span class="hljs-comment">// 移动拼接线</span><br>                QLineF currentLine = splicingLine -&gt; <span class="hljs-built_in">line</span>();<br>                currentLine.<span class="hljs-built_in">setP1</span>(<span class="hljs-built_in">QPointF</span>(currentLine.<span class="hljs-built_in">x1</span>(), currentLine.<span class="hljs-built_in">y1</span>() + deltaY));<br>                currentLine.<span class="hljs-built_in">setP2</span>(<span class="hljs-built_in">QPointF</span>(currentLine.<span class="hljs-built_in">x2</span>(), currentLine.<span class="hljs-built_in">y2</span>() + deltaY));<br>                splicingLine -&gt; <span class="hljs-built_in">setLine</span>(currentLine);<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">// 处理MovablePixmapItem类型且不是当前元素本身的项目</span><br>        MovablePixmapItem * pixmapItem = <span class="hljs-keyword">dynamic_cast</span> &lt; MovablePixmapItem * &gt; (item);<br>        <span class="hljs-keyword">if</span> (pixmapItem &amp;&amp; pixmapItem != <span class="hljs-keyword">this</span>) &#123;<br>            <span class="hljs-comment">// 检查该元素是否位于当前元素的下方</span><br>            qreal itemTopY = pixmapItem -&gt; <span class="hljs-built_in">sceneBoundingRect</span>().<span class="hljs-built_in">top</span>();<br>            <span class="hljs-keyword">if</span> (itemTopY &gt; currentBottomY) &#123;<br>                <span class="hljs-comment">// 移动该元素（作为整体移动）</span><br>                QPointF itemPos = pixmapItem -&gt; <span class="hljs-built_in">pos</span>();<br>                itemPos.<span class="hljs-built_in">setY</span>(itemPos.<span class="hljs-built_in">y</span>() + deltaY);<br>                <span class="hljs-comment">//临时禁用</span><br>                pixmapItem -&gt; <span class="hljs-built_in">setFlag</span>(QGraphicsItem::ItemSendsGeometryChanges, <span class="hljs-literal">false</span>);<br>                pixmapItem -&gt; <span class="hljs-built_in">setPos</span>(itemPos);<br>                <span class="hljs-comment">//取消禁用</span><br>                pixmapItem -&gt; <span class="hljs-built_in">setFlag</span>(QGraphicsItem::ItemSendsGeometryChanges, <span class="hljs-literal">true</span>);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>修复后代码如下:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">if</span> (rightSplicingLine &amp;&amp; leftSplicingLine) &#123;<br><br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!rightSplicingLine &amp;&amp; leftSplicingLine) &#123;<br>    qreal lineLX = leftSplicingLine -&gt; <span class="hljs-built_in">line</span>().<span class="hljs-built_in">x1</span>();<br>    <span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">&quot;最右边图片右移&quot;</span> &lt;&lt; rightX &lt;&lt; <span class="hljs-string">&quot;  &quot;</span> &lt;&lt; lineLX &lt;&lt; endl;<br>    <span class="hljs-keyword">if</span> (!(leftX + deltaX &lt;= lineLX)) &#123;<br>        newPos.<span class="hljs-built_in">setX</span>(oldPos.<span class="hljs-built_in">x</span>());<br>        <span class="hljs-keyword">return</span> newPos;<br>    &#125;<br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (rightSplicingLine &amp;&amp; !leftSplicingLine) &#123;<br>    qreal lineRX = rightSplicingLine -&gt; <span class="hljs-built_in">line</span>().<span class="hljs-built_in">x1</span>();<br>    <span class="hljs-built_in">qDebug</span>() &lt;&lt; <span class="hljs-string">&quot;最左边图片右移&quot;</span> &lt;&lt; rightX &lt;&lt; <span class="hljs-string">&quot;  &quot;</span> &lt;&lt; lineRX &lt;&lt; endl;<br>    <span class="hljs-keyword">if</span> (!(rightX + deltaX &gt;= lineRX)) &#123;<br>        newPos.<span class="hljs-built_in">setX</span>(oldPos.<span class="hljs-built_in">x</span>());<br>        <span class="hljs-keyword">return</span> newPos;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p>原因是我判断移动的时候是把移动之前的值和拼接线判断,而不是移动之后的值,就会造成如果移动的速度非常快,图片实际上可以拽离剪切线非常多,从而产生一个非常明显的白边.</p>
-<p><img src="/image/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E5%A5%87%E6%80%AA%E7%9A%84debug/1753193101455.gif" srcset="/img/loading.gif" lazyload alt="可以看到右边的图片拉动快了有明显的脱离"></p>
-<p>修复后效果:</p>
-<p><img src="/image/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E5%A5%87%E6%80%AA%E7%9A%84debug/1753193414462.gif" srcset="/img/loading.gif" lazyload alt="现在就不会脱离拼接线了"></p>
-<p>但是在公司我拉拽却没有发现这个bug,想来,原因应该是公司的内存只有8GB,我还开了VSCODE,QT CREATOR和其他软件,本身就有些卡顿了,再加上公司鼠标的DPI不高,所以拉拽的幅度不明显罢了.</p>
+<p>顺便提一嘴,最开始写这个应用的时候,有两个路线,分别是图动和拼接线动,   其中图动比较直观,所见即所得.但是有8种情况,而且还要实现整体移动,编程复杂一点;线动只有4种情况,而且不能所见即所得,但是编程简单一些.当时没做好调研和思考就选择了图动.</p>
+<p><img src="/image/%E5%A5%87%E5%A6%99%E7%9A%84%E6%AD%A3%E5%8F%8D%E9%A6%88/1753286100387.png" srcset="/img/loading.gif" lazyload alt="图动和线动的情况"></p>
 
                 
               </div>
@@ -305,6 +302,8 @@
       
         <a href="/tags/%E6%8B%BC%E5%A5%BD%E5%9B%BE/" class="print-no-link">#拼好图</a>
       
+        <a href="/tags/%E6%9D%82%E8%B0%88/" class="print-no-link">#杂谈</a>
+      
     </div>
   
 </div>
@@ -315,8 +314,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>记录一次有趣的debug</div>
-      <div>http://example.com/2025/07/22/记录一次奇怪的debug/</div>
+      <div>奇妙的正反馈</div>
+      <div>http://example.com/2025/07/23/奇妙的正反馈/</div>
     </div>
     <div class="license-meta">
       
@@ -328,7 +327,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年7月22日</div>
+          <div>2025年7月23日</div>
         </div>
       
       
@@ -360,18 +359,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/07/23/%E5%A5%87%E5%A6%99%E7%9A%84%E6%AD%A3%E5%8F%8D%E9%A6%88/" title="奇妙的正反馈">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">奇妙的正反馈</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/07/21/%E8%A7%A3%E5%86%B3QT%E8%AE%BE%E7%BD%AECtrl-%E9%BC%A0%E6%A0%87%E6%BB%9A%E8%BD%AE%E7%BC%A9%E6%94%BE-%E4%BC%9A%E8%A7%A6%E5%8F%91graphicsView%E7%9A%84%E9%BC%A0%E6%A0%87%E6%BB%9A%E8%BD%AE%E7%A7%BB%E5%8A%A8/" title="解决QT设置Ctrl+鼠标滚轮缩放 会触发GraphicsView的鼠标滚轮移动">
-                        <span class="hidden-mobile">解决QT设置Ctrl+鼠标滚轮缩放 会触发GraphicsView的鼠标滚轮移动</span>
+                      <a href="/2025/07/22/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E5%A5%87%E6%80%AA%E7%9A%84debug/" title="记录一次有趣的debug">
+                        <span class="hidden-mobile">记录一次有趣的debug</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

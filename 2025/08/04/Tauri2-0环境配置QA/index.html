@@ -19,22 +19,23 @@
   <meta name="author" content="浮云战争">
   <meta name="keywords" content="">
   
-    <meta name="description" content="QAQ:Running BeforeDevCommand (trunk serve) ‘trunk’ 不是内部或外部命令，也不是可运行的程序A:cargo install trunk Q:RUST配置镜像A:修改C:\Users\你的用户名\.cargo\config.toml,我使用的是阿里源. 123456789101112[source.crates-io]replace-with &#x3D; &amp;#">
+    <meta name="description" content="QAQ:为什么选择TauriA:首先是看到了一篇文章:得物商家客服从Electron迁移到Tauri的技术实践,然后自己列了个表格进行对比.个人的观点是,每一种框架都在赌,都在赌一个未来. 原生开发（C&#x2F;C++&#x2F;Java&#x2F;Swift）的赌局：赌“管理复杂度”成为核心矛盾 赌的未来 ：  未来大型企业（尤其是非IT行业，如金融、制造、能源）的IT系统越来越庞大，项目复杂">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tauri2.0环境配置">
-<meta property="og:url" content="http://example.com/2025/08/04/Tauri2-0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:title" content="Tauri2.0环境配置QA">
+<meta property="og:url" content="http://example.com/2025/08/04/Tauri2-0%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEQA/index.html">
 <meta property="og:site_name" content="浮云战争的博客">
-<meta property="og:description" content="QAQ:Running BeforeDevCommand (trunk serve) ‘trunk’ 不是内部或外部命令，也不是可运行的程序A:cargo install trunk Q:RUST配置镜像A:修改C:\Users\你的用户名\.cargo\config.toml,我使用的是阿里源. 123456789101112[source.crates-io]replace-with &#x3D; &amp;#">
+<meta property="og:description" content="QAQ:为什么选择TauriA:首先是看到了一篇文章:得物商家客服从Electron迁移到Tauri的技术实践,然后自己列了个表格进行对比.个人的观点是,每一种框架都在赌,都在赌一个未来. 原生开发（C&#x2F;C++&#x2F;Java&#x2F;Swift）的赌局：赌“管理复杂度”成为核心矛盾 赌的未来 ：  未来大型企业（尤其是非IT行业，如金融、制造、能源）的IT系统越来越庞大，项目复杂">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-08-04T14:24:10.000Z">
-<meta property="article:modified_time" content="2025-08-04T14:28:57.836Z">
+<meta property="article:modified_time" content="2025-08-04T15:08:02.399Z">
 <meta property="article:author" content="浮云战争">
-<meta property="article:tag" content="Tauri2.0">
+<meta property="article:tag" content="杂谈">
+<meta property="article:tag" content="Tauri">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Tauri2.0环境配置 - 浮云战争的博客</title>
+  <title>Tauri2.0环境配置QA - 浮云战争的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Tauri2.0环境配置"></span>
+            <span id="subtitle" data-typed-text="Tauri2.0环境配置QA"></span>
           
         </div>
 
@@ -223,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          88 字
+          1.7k 字
         
       </span>
     
@@ -234,7 +235,7 @@
         
         
         
-          1 分钟
+          15 分钟
         
       </span>
     
@@ -271,12 +272,135 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Tauri2.0环境配置</h1>
+            <h1 id="seo-header">Tauri2.0环境配置QA</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="QA"><a href="#QA" class="headerlink" title="QA"></a>QA</h1><h2 id="Q-Running-BeforeDevCommand-trunk-serve-‘trunk’-不是内部或外部命令，也不是可运行的程序"><a href="#Q-Running-BeforeDevCommand-trunk-serve-‘trunk’-不是内部或外部命令，也不是可运行的程序" class="headerlink" title="Q:Running BeforeDevCommand (trunk serve) ‘trunk’ 不是内部或外部命令，也不是可运行的程序"></a>Q:Running BeforeDevCommand (<code>trunk serve</code>) ‘trunk’ 不是内部或外部命令，也不是可运行的程序</h2><p><strong>A:cargo install trunk</strong></p>
+                <h1 id="QA"><a href="#QA" class="headerlink" title="QA"></a>QA</h1><h2 id="Q-为什么选择Tauri"><a href="#Q-为什么选择Tauri" class="headerlink" title="Q:为什么选择Tauri"></a>Q:为什么选择Tauri</h2><p>A:首先是看到了一篇文章:<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/UxmJxU4-fv9GeRxl2fzOGw">得物商家客服从Electron迁移到Tauri的技术实践</a>,然后自己列了个表格进行对比.个人的观点是,每一种框架都在赌,都在赌一个未来.</p>
+<h3 id="原生开发（C-C-Java-Swift）的赌局：赌“管理复杂度”成为核心矛盾"><a href="#原生开发（C-C-Java-Swift）的赌局：赌“管理复杂度”成为核心矛盾" class="headerlink" title="原生开发（C&#x2F;C++&#x2F;Java&#x2F;Swift）的赌局：赌“管理复杂度”成为核心矛盾"></a><strong>原生开发（C&#x2F;C++&#x2F;Java&#x2F;Swift）的赌局：赌“管理复杂度”成为核心矛盾</strong></h3><p> <strong>赌的未来</strong> ：</p>
+<ul>
+<li>未来大型企业（尤其是非IT行业，如金融、制造、能源）的IT系统越来越庞大，项目复杂度飙升。</li>
+<li>沟通成本、协作成本、架构管理成本成为比“开发效率”更关键的问题。</li>
+<li>企业发现，单纯“雇更多人”或“买更贵硬件”无法解决软件工程的混乱，<strong>规范化的底层架构</strong>才是核心竞争力。</li>
+</ul>
+<p> <strong>如果赌赢了</strong> ：<br>✅ 企业愿意投入高昂成本维护长期稳定的原生代码，而非追求短期快速迭代。<br>✅ 对性能、安全、可维护性的极致需求，让C&#x2F;C++&#x2F;Rust等语言重回主流。</p>
+<p> <strong>如果赌输了</strong> ：<br>❌ 如果未来企业更倾向于“快速试错、灵活调整”，而非长期维护，原生开发可能被更高效的框架取代。</p>
+<h3 id="QT（C-）的赌局：赌“硬件成本高企，需求固化”"><a href="#QT（C-）的赌局：赌“硬件成本高企，需求固化”" class="headerlink" title="QT（C++）的赌局：赌“硬件成本高企，需求固化”"></a><strong>QT（C++）的赌局：赌“硬件成本高企，需求固化”</strong></h3><p> <strong>赌的未来</strong> ：</p>
+<ul>
+<li>全球供应链问题、地缘政治、能源危机等因素导致 <strong>硬件价格长期居高不下</strong> ，企业无法随意升级设备。</li>
+<li>行业需求趋于稳定，软件改动减少，但复用需求极高（如工业控制、嵌入式设备、医疗仪器）。</li>
+<li>企业需要 <strong>一次开发，长期运行</strong> ，而非频繁更新。</li>
+</ul>
+<p> <strong>如果赌赢了</strong> ：<br>✅ QT的跨平台能力、稳定性和高性能成为刚需，尤其是在工业、汽车、嵌入式领域。<br>✅ C++生态持续繁荣，QT成为“传统行业数字化转型”的首选框架。</p>
+<p> <strong>如果赌输了</strong> ：<br>❌ 如果硬件价格持续下降，企业更倾向于“用新硬件换性能”，QT的优化优势不再关键。<br>❌ 如果行业需求变化极快，QT的笨重开发模式可能被更灵活的框架取代。</p>
+<h3 id="Chromium家族（Electron-NW-js-CEF）、-Webview家族（Tauri-pywebview）和QT-Python-的赌局：赌“中小企业主导，迭代-打磨”"><a href="#Chromium家族（Electron-NW-js-CEF）、-Webview家族（Tauri-pywebview）和QT-Python-的赌局：赌“中小企业主导，迭代-打磨”" class="headerlink" title="Chromium家族（Electron&#x2F;NW.js&#x2F;CEF）、 Webview家族（Tauri&#x2F;pywebview）和QT(Python)的赌局：赌“中小企业主导，迭代&gt;打磨”"></a><strong>Chromium家族（Electron&#x2F;NW.js&#x2F;CEF）、 Webview家族（Tauri&#x2F;pywebview）和QT(Python)的赌局：赌“中小企业主导，迭代&gt;打磨”</strong></h3><p> <strong>赌的未来</strong> ：</p>
+<ul>
+<li><strong>程序员薪资持续上涨</strong> ，中小企业难以负担大规模专职开发团队。</li>
+<li><strong>硬件价格走低</strong> ，企业宁愿多买内存&#x2F;CPU，也不愿花高价优化代码。</li>
+<li>**市场比性能重要非常多，**企业倾向于快速开发抢占市场，而并非慢慢打磨。</li>
+<li><strong>非程序员（如运营、财务、销售）被迫自学编程</strong> ，用低代码&#x2F;Web技术解决日常问题。</li>
+<li>企业更倾向于“能用就行，通用化”，而非“极致性能”。</li>
+</ul>
+<p> <strong>如果赌赢了</strong> ：<br>✅ Electron&#x2F;Tauri等框架成为主流，因为企业更看重“开发速度”而非“运行效率”。<br>✅ Web技术（HTML&#x2F;CSS&#x2F;JS）成为事实上的“通用编程语言”，甚至非技术人员也能写简单工具。</p>
+<p> <strong>如果赌输了</strong> ：<br>❌ 如果程序员薪资下降（如AI自动生成代码），企业可能回归定制化开发，而非依赖通用框架。<br>❌ 如果硬件成本反弹（如芯片短缺），内存&#x2F;CPU密集型应用（如Electron）可能被抛弃。</p>
+<h3 id="Flutter的赌局：赌“跨平台一致性比原生体验更重要”"><a href="#Flutter的赌局：赌“跨平台一致性比原生体验更重要”" class="headerlink" title="Flutter的赌局：赌“跨平台一致性比原生体验更重要”"></a><strong>Flutter的赌局：赌“跨平台一致性比原生体验更重要”</strong></h3><p> <strong>赌的未来</strong> ：</p>
+<ul>
+<li>企业不再愿意为每个平台（iOS&#x2F;Android&#x2F;Windows&#x2F;macOS&#x2F;Linux）单独开发应用。</li>
+<li>用户对UI一致性要求极高，容忍性能损失。</li>
+<li>移动端、桌面端、Web端的界限模糊，应用需要无缝切换。</li>
+</ul>
+<p> <strong>如果赌赢了</strong> ：<br>✅ Flutter成为“一次编写，全平台运行”的终极解决方案，尤其是对UI要求高的行业（如电商、社交）。<br>✅ Dart语言因Flutter而流行，吸引更多开发者。</p>
+<p> <strong>如果赌输了</strong> ：<br>❌ 如果用户对性能&#x2F;原生体验的要求远超UI一致性，Flutter可能被原生开发或更轻量级的方案取代。<br>❌ 如果平台差异（如iOS&#x2F;Android的交互习惯）仍然巨大，Flutter的“一套UI适应所有平台”策略可能失败。</p>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>赌的核心未来</th>
+<th>赢面大的行业</th>
+<th>潜在风险</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原生开发</td>
+<td>管理复杂度 &gt; 开发效率</td>
+<td>金融、军工、航天、操作系统</td>
+<td>如果企业更看重快速迭代，可能被取代</td>
+</tr>
+<tr>
+<td>QT</td>
+<td>硬件成本高 + 需求稳定</td>
+<td>工业控制、嵌入式、汽车</td>
+<td>如果硬件便宜了，优化不再关键</td>
+</tr>
+<tr>
+<td>Electron</td>
+<td>程序员贵 + 硬件便宜</td>
+<td>中小企业工具、内部管理系统</td>
+<td>如果AI降低编程成本，需求可能减少</td>
+</tr>
+<tr>
+<td>Tauri</td>
+<td>企业追求轻量化 + Web技术普及</td>
+<td>轻量级工具、个人开发者</td>
+<td>如果系统WebView兼容性太差</td>
+</tr>
+<tr>
+<td>Flutter</td>
+<td>跨平台一致性 &gt; 原生体验</td>
+<td>移动优先应用、UI密集型产品</td>
+<td>如果平台差异仍然巨大，可能失败</td>
+</tr>
+</tbody></table>
+<p>最终，没有绝对赢家，只有适应趋势的幸存者。我的项目又更适合哪种“赌局”呢？</p>
+<table>
+<thead>
+<tr>
+<th>框架类型</th>
+<th>代表技术</th>
+<th>优势</th>
+<th>劣势</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原生开发</td>
+<td>C&#x2F;C++、Win32&#x2F;Cocoa</td>
+<td>高性能、完全控制</td>
+<td>多平台适配成本高</td>
+<td>系统级工具、游戏引擎</td>
+</tr>
+<tr>
+<td>QT</td>
+<td>Qt&#x2F;C++</td>
+<td>跨平台、丰富UI库,</td>
+<td>资源占用高、开源刺客</td>
+<td>工业软件、嵌入式GUI</td>
+</tr>
+<tr>
+<td>Chromium家族</td>
+<td>Electron</td>
+<td>生态成熟、Web技术栈</td>
+<td>包体积大、内存占用高</td>
+<td>复杂桌面应用（如IDE、IM）</td>
+</tr>
+<tr>
+<td>Webview家族</td>
+<td>Tauri</td>
+<td>轻量、低内存占用</td>
+<td>功能受限、兼容性依赖系统</td>
+<td>轻量级工具、内部管理系统</td>
+</tr>
+<tr>
+<td>Flutter</td>
+<td>Dart</td>
+<td>高性能、跨平台一致性</td>
+<td>桌面端待完善(比如不能多窗口)</td>
+<td>移动优先应用、高UI一致性需求</td>
+</tr>
+</tbody></table>
+<p>个人还是更看好“中小企业主导大部分软件市场，迭代&gt;打磨”的未来,目前的存储价格比起计算价格相对走低,市场比性能重要非常多.所以肯定是选择了Chromium家族、 Webview家族和QT(Python),其中QT是开源刺客,首先PASS,然后Chromium家族内存占用过于大了,个人认为,大部分电脑在最近5年的内存容量应该都在8GB左右,处于不上不下的水平,还是得尽量节省内存占用,所以选择了Tauri.</p>
+<h2 id="Q-Running-BeforeDevCommand-trunk-serve-‘trunk’-不是内部或外部命令，也不是可运行的程序"><a href="#Q-Running-BeforeDevCommand-trunk-serve-‘trunk’-不是内部或外部命令，也不是可运行的程序" class="headerlink" title="Q:Running BeforeDevCommand (trunk serve) ‘trunk’ 不是内部或外部命令，也不是可运行的程序"></a>Q:Running BeforeDevCommand (<code>trunk serve</code>) ‘trunk’ 不是内部或外部命令，也不是可运行的程序</h2><p><strong>A:cargo install trunk</strong></p>
 <h2 id="Q-RUST配置镜像"><a href="#Q-RUST配置镜像" class="headerlink" title="Q:RUST配置镜像"></a>Q:RUST配置镜像</h2><p>A:修改C:\Users\你的用户名\.cargo\config.toml,我使用的是阿里源.</p>
 <figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs TOML"><span class="hljs-section">[source.crates-io]</span><br><span class="hljs-attr">replace-with</span> = <span class="hljs-string">&#x27;aliyun&#x27;</span><br><br><span class="hljs-section">[source.ustc]</span><br><span class="hljs-attr">registry</span> = <span class="hljs-string">&quot;https://mirrors.ustc.edu.cn/crates.io-index&quot;</span><br><br><span class="hljs-section">[http]</span><br><span class="hljs-attr">check-revoke</span> = <span class="hljs-literal">false</span><br><br><span class="hljs-section">[source.aliyun]</span><br><span class="hljs-attr">registry</span> = <span class="hljs-string">&quot;sparse+https://mirrors.aliyun.com/crates.io-index/&quot;</span><br><br></code></pre></td></tr></table></figure>
 
@@ -291,7 +415,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Tauri2-0/" class="print-no-link">#Tauri2.0</a>
+        <a href="/tags/%E6%9D%82%E8%B0%88/" class="print-no-link">#杂谈</a>
+      
+        <a href="/tags/Tauri/" class="print-no-link">#Tauri</a>
       
     </div>
   
@@ -303,8 +429,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Tauri2.0环境配置</div>
-      <div>http://example.com/2025/08/04/Tauri2-0环境配置/</div>
+      <div>Tauri2.0环境配置QA</div>
+      <div>http://example.com/2025/08/04/Tauri2-0环境配置QA/</div>
     </div>
     <div class="license-meta">
       
